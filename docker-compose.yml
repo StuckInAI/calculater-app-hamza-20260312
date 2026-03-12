@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  calculator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - calculator_data:/app/data
+    environment:
+      - NODE_ENV=production
+      - DATABASE_PATH=./data/calculator.db
+    restart: unless-stopped
+
+volumes:
+  calculator_data:
